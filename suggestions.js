@@ -1,5 +1,6 @@
 let suggestIndex = -1;
 let suggestInput = "";
+let defaultMaxSuggestIndex = 7
 
 const getSettingg = (setting) => {
     // enable/disable
@@ -30,6 +31,7 @@ const suggest = () => {
 
 const getSuggestions = (data) => {
     if (data[1].length > 0) {
+        defaultMaxSuggestIndex = data[1].length - 1
         document.getElementById("suggestions").style.display = "block";
         document.getElementById("searchbar").style.borderRadius = "var(--bdradius) var(--bdradius) 0 0";
     } else {
@@ -67,7 +69,7 @@ const hideSearchSuggest = () => {
         if (document.getElementById("suggestions").style.display == "block") {
 
             // arrow down
-            if (event.key == "ArrowDown" && suggestIndex < 7) {
+            if (event.key == "ArrowDown" && suggestIndex < defaultMaxSuggestIndex) {
                 suggestIndex += 1;
                 applySuggestions();
             }
